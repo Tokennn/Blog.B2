@@ -32,15 +32,17 @@ export default function RootLayout({
     // GSAP ScrollTrigger + Lenis integration
     lenis.on('scroll', ScrollTrigger.update)
 
-    gsap.ticker.add((time) => {
+    const tickerFunction = (time: number) => {
       lenis.raf(time * 1000)
-    })
+    }
+
+    gsap.ticker.add(tickerFunction)
 
     gsap.ticker.lagSmoothing(0)
 
     return () => {
       lenis.destroy()
-      gsap.ticker.remove()
+      gsap.ticker.remove(tickerFunction)
     }
   }, [])
 

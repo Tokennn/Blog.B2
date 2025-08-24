@@ -79,4 +79,14 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Masquer la barre d'outils du PDF */
+  iframe[src*=".pdf"] {
+    -webkit-filter: grayscale(0);
+  }
+  
+  /* Styles spécifiques pour masquer les éléments de navigation PDF */
+  iframe[src*=".pdf"]::-webkit-scrollbar {
+    display: none;
+  }
 }

@@ -1,8 +1,139 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { X, Download, MapPin, Calendar, Award } from 'lucide-react'
+import { X, Download, MapPin, Calendar, Award, Eye, EyeOff } from 'lucide-react'
 import { gsap } from 'gsap'
+
+// Composant CV Preview interactif
+function CVPreview() {
+  const [isHovered, setIsHovered] = useState(false)
+  const [isClicked, setIsClicked] = useState(false)
+  const cvRef = useRef<HTMLDivElement>(null)
+
+  const handleMouseEnter = () => {
+    setIsHovered(true)
+    // L'effet de flou est maintenant géré directement dans le style de l'iframe
+    gsap.to(cvRef.current, {
+      scale: 1.05,
+      duration: 0.3,
+      ease: 'power2.out'
+    })
+  }
+
+  const handleMouseLeave = () => {
+    if (!isClicked) {
+      setIsHovered(false)
+      // L'effet de flou est maintenant géré directement dans le style de l'iframe
+      gsap.to(cvRef.current, {
+        scale: 1,
+        duration: 0.3,
+        ease: 'power2.out'
+      })
+    }
+  }
+
+  const handleClick = () => {
+    setIsClicked(!isClicked)
+    if (!isClicked) {
+      gsap.to(cvRef.current, {
+        filter: 'blur(0px)',
+        scale: 1.1,
+        duration: 0.4,
+        ease: 'back.out(1.7)'
+      })
+    } else {
+      gsap.to(cvRef.current, {
+        filter: 'blur(8px)',
+        scale: 1,
+        duration: 0.3,
+        ease: 'power2.out'
+      })
+    }
+  }
+
+  return (
+    <div className="text-center">
+      <div className="bg-gradient-to-r from-gray-900/50 to-gray-800/50 backdrop-blur-sm p-12 rounded-2xl border border-gray-600">
+        <h2 className="text-3xl font-bold mb-6 text-white">Mon CV</h2>
+        <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+          Survolez ou cliquez sur l'aperçu pour révéler mon CV complet
+        </p>
+        
+        {/* Aperçu du CV en petit et flou */}
+        <div 
+          ref={cvRef}
+          className="relative inline-block cursor-pointer transform transition-all duration-300"
+          style={{ filter: 'blur(8px)' }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
+        >
+          {/* Votre CV réel - Remplacez le chemin par celui de votre fichier */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 w-64 h-80 overflow-hidden">
+            {/* Option 1: Si vous avez un PDF de votre CV */}
+            <iframe 
+              src="/CV.pdf#toolbar=0&navpanes=0&scrollbar=0&statusbar=0&menubar=0&scrollbar=0&resizable=0&scrollbar=0" 
+              title="Aperçu de mon CV"
+              className="w-full h-full border-0"
+              style={{ 
+                filter: isHovered ? 'blur(0px)' : 'blur(8px)',
+                transition: 'filter 0.3s ease-in-out',
+                overflow: 'hidden'
+              }}
+              frameBorder="0"
+              scrolling="no"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              onError={(e) => {
+                // Fallback si le PDF n'existe pas
+                const target = e.currentTarget
+                const fallback = target.nextElementSibling as HTMLElement
+                if (target && fallback) {
+                  target.style.display = 'none'
+                  fallback.style.display = 'flex'
+                }
+              }}
+            />
+            
+            {/* Option 2: Fallback avec placeholder stylisé */}
+            <div className="hidden w-full h-full flex-col items-center justify-center p-6">
+              <div className="text-center space-y-3">
+                <div className="w-16 h-16 bg-white/20 rounded-full mx-auto"></div>
+                <div className="space-y-2">
+                  <div className="h-4 bg-white/20 rounded w-32"></div>
+                  <div className="h-3 bg-white/15 rounded w-24"></div>
+                  <div className="h-3 bg-white/15 rounded w-28"></div>
+                </div>
+                <div className="space-y-1 mt-4">
+                  <div className="h-2 bg-white/15 rounded w-full"></div>
+                  <div className="h-2 bg-white/15 rounded w-3/4"></div>
+                  <div className="h-2 bg-white/15 rounded w-1/2"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Indicateur d'interaction */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            {/* Suppression de tous les indicateurs d'interaction */}
+          </div>
+        </div>
+
+        {/* Bouton de téléchargement */}
+        <div className="mt-8">
+          <a 
+            href="/CV.pdf" 
+            download="CV_Quentin_Contreau.pdf"
+            className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105"
+          >
+            <Download className="mr-2" size={18} />
+            Télécharger CV complet
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function About() {
   const [showCV, setShowCV] = useState(false)
@@ -48,34 +179,6 @@ export default function About() {
 
     return () => ctx.revert()
   }, [])
-
-  const openCVModal = () => {
-    setShowCV(true)
-    gsap.fromTo('.modal-backdrop',
-      { opacity: 0 },
-      { opacity: 1, duration: 0.3 }
-    )
-    gsap.fromTo('.modal-content',
-      { opacity: 0, scale: 0.8, y: 50 },
-      { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: 'back.out(1.7)' }
-    )
-  }
-
-  const closeCVModal = () => {
-    gsap.to('.modal-content',
-      { 
-        opacity: 0, 
-        scale: 0.8, 
-        y: 50, 
-        duration: 0.3, 
-        ease: 'power2.in',
-        onComplete: () => setShowCV(false)
-      }
-    )
-    gsap.to('.modal-backdrop',
-      { opacity: 0, duration: 0.3 }
-    )
-  }
 
   return (
     <div ref={pageRef} className="min-h-screen bg-black pt-24 pb-16">
@@ -199,90 +302,9 @@ export default function About() {
           </div>
         </div>
 
-        {/* CV Section */}
-        <div className="text-center">
-          <div className="bg-gradient-to-r from-gray-900/50 to-gray-800/50 backdrop-blur-sm p-12 rounded-2xl border border-gray-600">
-            <h2 className="text-3xl font-bold mb-6 text-white">Mon CV Détaillé</h2>
-            <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-              Consultez mon curriculum vitae complet pour découvrir l'ensemble de mon parcours, 
-              mes formations et mes réalisations professionnelles.
-            </p>
-            <button 
-              onClick={openCVModal}
-              className="inline-flex items-center px-8 py-4 bg-white text-black font-semibold rounded-xl hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-white/25"
-            >
-              <Download className="mr-2" size={20} />
-              Consulter mon CV
-            </button>
-          </div>
-        </div>
+        {/* CV Section Interactive */}
+        <CVPreview />
       </div>
-
-      {/* CV Modal */}
-      {showCV && (
-        <div className="modal-backdrop fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="modal-content bg-gray-900 rounded-2xl border border-gray-600 max-w-4xl w-full max-h-[90vh] overflow-hidden">
-            <div className="flex items-center justify-between p-6 border-b border-gray-700">
-              <h2 className="text-2xl font-bold text-white">Mon CV</h2>
-              <button 
-                onClick={closeCVModal}
-                className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
-              >
-                <X className="text-gray-400 hover:text-white" size={24} />
-              </button>
-            </div>
-            <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
-              <div className="bg-gray-800/50 p-8 rounded-xl">
-                <div className="text-center mb-8">
-                  <h1 className="text-4xl font-bold text-white mb-2">Votre Nom</h1>
-                  <p className="text-xl text-gray-300 mb-4">Titre Professionnel</p>
-                  <div className="flex justify-center space-x-6 text-gray-400">
-                    <span>email@example.com</span>
-                    <span>+33 1 23 45 67 89</span>
-                    <span>Paris, France</span>
-                  </div>
-                </div>
-                
-                <div className="space-y-8">
-                  <section>
-                    <h2 className="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">
-                      Expérience Professionnelle
-                    </h2>
-                    <div className="space-y-6 text-gray-300">
-                      <div>
-                        <h3 className="text-xl font-semibold text-white">Directeur Innovation - TechCorp (2024)</h3>
-                        <p className="mb-2">Direction stratégique et innovation</p>
-                        <ul className="list-disc list-inside space-y-1 ml-4">
-                          <li>Développement de la stratégie d'innovation</li>
-                          <li>Management d'équipe de 15 personnes</li>
-                          <li>Augmentation du ROI de 40%</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </section>
-
-                  <section>
-                    <h2 className="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">
-                      Formation
-                    </h2>
-                    <div className="text-gray-300">
-                      <h3 className="text-xl font-semibold text-white">Master en Management - École Supérieure (2018)</h3>
-                      <p>Spécialisation en Stratégie et Innovation</p>
-                    </div>
-                  </section>
-                </div>
-
-                <div className="mt-8 text-center">
-                  <button className="inline-flex items-center px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-all duration-300">
-                    <Download className="mr-2" size={18} />
-                    Télécharger PDF
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
