@@ -200,21 +200,21 @@ export default function About() {
             <h2 className="text-3xl font-bold mb-6 text-white">Présentation</h2>
             <div className="space-y-4 text-gray-300 leading-relaxed">
               <p>
-                Passionné par l'innovation et l'excellence professionnelle, je combine expertise technique 
+                Passionné par l'innovation le design et l'expérience utilisateur, je combine expertise technique 
                 et vision stratégique pour créer des solutions impactantes et durables. (Surtout ici en fonction de la demande du client)
               </p>
               <p>
                 Avec une approche centrée sur l'humain et les résultats, je m'attache à transformer 
-                les défis complexes en opportunités de croissance et d'apprentissage.
+                Ules défis complexes en opportunités de croissance et d'apprentissage dans un domaine qu ime passionne depuis des années.
               </p>
               <div className="flex items-center space-x-4 mt-6">
                 <div className="flex items-center text-gray-400">
                   <MapPin size={18} className="mr-2" />
-                  <span>Paris, France</span>
+                  <span>Lyon, France</span>
                 </div>
                 <div className="flex items-center text-gray-400">
                   <Award size={18} className="mr-2" />
-                  <span>Expert</span>
+                  <span>Intermédiaire</span>
                 </div>
               </div>
             </div>
