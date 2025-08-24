@@ -154,7 +154,7 @@ export default function Company() {
 
         {/* Statistics */}
         <div className="stats-section bg-gradient-to-r from-gray-900/50 to-gray-800/50 backdrop-blur-sm p-12 rounded-2xl border border-gray-600 mb-16">
-          <h2 className="text-3xl font-bold text-center text-white mb-12">Nos Chiffres Clés</h2>
+          <h2 className="text-3xl font-bold text-center text-white mb-12">Chiffres Clés</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { number: '30+', label: 'Collaborateurs', icon: Users },

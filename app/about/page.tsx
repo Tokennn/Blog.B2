@@ -186,7 +186,7 @@ export default function About() {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="page-title text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-            À Propos de Moi
+            À Propos
           </h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Découvrez mon parcours professionnel, mes compétences et ma passion pour l'excellence
@@ -201,7 +201,7 @@ export default function About() {
             <div className="space-y-4 text-gray-300 leading-relaxed">
               <p>
                 Passionné par l'innovation et l'excellence professionnelle, je combine expertise technique 
-                et vision stratégique pour créer des solutions impactantes et durables.
+                et vision stratégique pour créer des solutions impactantes et durables. (Surtout ici en fonction de la demande du client)
               </p>
               <p>
                 Avec une approche centrée sur l'humain et les résultats, je m'attache à transformer 

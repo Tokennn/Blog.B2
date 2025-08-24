@@ -119,6 +119,7 @@ const posts: Post[] = [
 export default function Posts() {
   const [selectedPost, setSelectedPost] = useState<Post | null>(null)
   const pageRef = useRef<HTMLDivElement>(null)
+  const modalRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -128,13 +129,14 @@ export default function Posts() {
       )
 
       gsap.fromTo('.post-card',
-        { y: 60, opacity: 0, scale: 0.95 },
+        { y: 60, opacity: 0, scale: 0.95, rotationY: -15 },
         { 
           y: 0, 
           opacity: 1, 
           scale: 1,
+          rotationY: 0,
           duration: 0.8, 
-          ease: 'power2.out',
+          ease: 'back.out(1.7)',
           stagger: 0.15,
           scrollTrigger: {
             trigger: '.posts-grid',
@@ -149,29 +151,123 @@ export default function Posts() {
 
   const openPostModal = (post: Post) => {
     setSelectedPost(post)
+    
+    // Animation du backdrop avec effet de parallaxe
     gsap.fromTo('.modal-backdrop',
-      { opacity: 0 },
-      { opacity: 1, duration: 0.3 }
+      { 
+        opacity: 0,
+        scale: 1.1,
+        backdropFilter: 'blur(0px)'
+      },
+      { 
+        opacity: 1, 
+        scale: 1,
+        backdropFilter: 'blur(10px)',
+        duration: 0.5,
+        ease: 'power2.out'
+      }
     )
+
+    // Animation du contenu principal avec rebond et rotation
     gsap.fromTo('.modal-content',
-      { opacity: 0, scale: 0.8, y: 50 },
-      { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: 'back.out(1.7)' }
+      { 
+        opacity: 0, 
+        scale: 0.7, 
+        y: 100,
+        rotationX: -15,
+        rotationY: 5
+      },
+      { 
+        opacity: 1, 
+        scale: 1, 
+        y: 0,
+        rotationX: 0,
+        rotationY: 0,
+        duration: 0.6, 
+        ease: 'back.out(1.7)'
+      }
+    )
+
+    // Animation des éléments internes avec délai progressif
+    gsap.fromTo('.modal-header-content',
+      { x: -30, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.4, delay: 0.2, ease: 'power2.out' }
+    )
+
+    gsap.fromTo('.modal-title',
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.5, delay: 0.3, ease: 'power2.out' }
+    )
+
+    gsap.fromTo('.modal-section',
+      { 
+        y: 30, 
+        opacity: 0,
+        scale: 0.95
+      },
+      { 
+        y: 0, 
+        opacity: 1,
+        scale: 1,
+        duration: 0.4, 
+        stagger: 0.1,
+        delay: 0.4,
+        ease: 'power2.out'
+      }
+    )
+
+    gsap.fromTo('.modal-list-item',
+      { 
+        x: -20, 
+        opacity: 0,
+        scale: 0.9
+      },
+      { 
+        x: 0, 
+        opacity: 1,
+        scale: 1,
+        duration: 0.3, 
+        stagger: 0.05,
+        delay: 0.6,
+        ease: 'back.out(1.7)'
+      }
     )
   }
 
   const closePostModal = () => {
+    // Animation de sortie du contenu avec effet de rotation
     gsap.to('.modal-content',
       { 
         opacity: 0, 
         scale: 0.8, 
-        y: 50, 
-        duration: 0.3, 
+        y: 50,
+        rotationX: 15,
+        rotationY: -5,
+        duration: 0.4, 
+        ease: 'power2.in'
+      }
+    )
+
+    // Animation de sortie des éléments internes
+    gsap.to('.modal-header-content, .modal-title, .modal-section, .modal-list-item',
+      { 
+        opacity: 0, 
+        y: -20,
+        duration: 0.2,
+        ease: 'power2.in'
+      }
+    )
+
+    // Animation de sortie du backdrop
+    gsap.to('.modal-backdrop',
+      { 
+        opacity: 0,
+        scale: 1.1,
+        backdropFilter: 'blur(0px)',
+        duration: 0.4,
         ease: 'power2.in',
         onComplete: () => setSelectedPost(null)
       }
-    )
-    gsap.to('.modal-backdrop',
-      { opacity: 0, duration: 0.3 }
     )
   }
 
@@ -202,12 +298,12 @@ export default function Posts() {
           {posts.map((post) => (
             <article 
               key={post.id}
-              className="post-card bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-700 overflow-hidden hover:border-white/50 transition-all duration-300 cursor-pointer group hover:transform hover:scale-105"
+              className="post-card bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-700 overflow-hidden hover:border-white/50 transition-all duration-300 cursor-pointer group hover:transform hover:scale-105 hover:shadow-2xl hover:shadow-white/10"
               onClick={() => openPostModal(post)}
             >
               {/* Category Badge */}
               <div className="p-6 pb-0">
-                <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold text-white bg-gradient-to-r ${getCategoryColor(post.category)}`}>
+                <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold text-white bg-gradient-to-r ${getCategoryColor(post.category)} transform transition-transform group-hover:scale-110`}>
                   {post.category}
                 </span>
               </div>
@@ -260,11 +356,11 @@ export default function Posts() {
 
       {/* Post Detail Modal */}
       {selectedPost && (
-        <div className="modal-backdrop fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="modal-content bg-gray-900 rounded-2xl border border-gray-600 max-w-4xl w-full max-h-[90vh] overflow-hidden">
+        <div ref={modalRef} className="modal-backdrop fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="modal-content bg-gray-900 rounded-2xl border border-gray-600 max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl shadow-black/50">
             {/* Modal Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-700">
-              <div className="flex items-center space-x-4">
+              <div className="modal-header-content flex items-center space-x-4">
                 <span className={`px-3 py-1 rounded-full text-xs font-semibold text-white bg-gradient-to-r ${getCategoryColor(selectedPost.category)}`}>
                   {selectedPost.category}
                 </span>
@@ -281,7 +377,7 @@ export default function Posts() {
               </div>
               <button 
                 onClick={closePostModal}
-                className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
+                className="p-2 hover:bg-gray-800 rounded-lg transition-all duration-200 hover:scale-110 hover:rotate-90"
               >
                 <X className="text-gray-400 hover:text-white" size={24} />
               </button>
@@ -289,10 +385,10 @@ export default function Posts() {
 
             {/* Modal Content */}
             <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
-              <h1 className="text-3xl font-bold text-white mb-6">{selectedPost.title}</h1>
+              <h1 className="modal-title text-3xl font-bold text-white mb-6">{selectedPost.title}</h1>
               
               {/* Description */}
-              <div className="mb-8">
+              <div className="modal-section mb-8">
                 <div className="flex items-center mb-4">
                   <BookOpen className="text-white mr-2" size={20} />
                   <h2 className="text-xl font-semibold text-white">Description du Projet</h2>
@@ -301,14 +397,14 @@ export default function Posts() {
               </div>
 
               {/* Knowledge */}
-              <div className="mb-8">
+              <div className="modal-section mb-8">
                 <div className="flex items-center mb-4">
                   <Lightbulb className="text-white mr-2" size={20} />
                   <h2 className="text-xl font-semibold text-white">Connaissances Mobilisées</h2>
                 </div>
                 <div className="grid md:grid-cols-2 gap-3">
                   {selectedPost.content.knowledge.map((item, index) => (
-                    <div key={index} className="flex items-center bg-gray-800/50 p-3 rounded-lg">
+                    <div key={index} className="modal-list-item flex items-center bg-gray-800/50 p-3 rounded-lg hover:bg-gray-700/50 transition-all duration-200 hover:scale-105">
                       <div className="w-2 h-2 bg-white rounded-full mr-3 flex-shrink-0"></div>
                       <span className="text-gray-300">{item}</span>
                     </div>
@@ -317,14 +413,14 @@ export default function Posts() {
               </div>
 
               {/* Difficulties */}
-              <div className="mb-8">
+              <div className="modal-section mb-8">
                 <div className="flex items-center mb-4">
                   <AlertTriangle className="text-gray-400 mr-2" size={20} />
                   <h2 className="text-xl font-semibold text-white">Difficultés Rencontrées</h2>
                 </div>
                 <div className="space-y-3">
                   {selectedPost.content.difficulties.map((item, index) => (
-                    <div key={index} className="flex items-start bg-gray-800/50 p-4 rounded-lg">
+                    <div key={index} className="modal-list-item flex items-start bg-gray-800/50 p-4 rounded-lg hover:bg-gray-700/50 transition-all duration-200 hover:scale-105">
                       <div className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                       <span className="text-gray-300">{item}</span>
                     </div>
@@ -333,14 +429,14 @@ export default function Posts() {
               </div>
 
               {/* Learnings */}
-              <div>
+              <div className="modal-section">
                 <div className="flex items-center mb-4">
                   <BookOpen className="text-white mr-2" size={20} />
                   <h2 className="text-xl font-semibold text-white">Apprentissages Clés</h2>
                 </div>
                 <div className="space-y-3">
                   {selectedPost.content.learnings.map((item, index) => (
-                    <div key={index} className="flex items-start bg-gray-800/50 p-4 rounded-lg">
+                    <div key={index} className="modal-list-item flex items-start bg-gray-800/50 p-4 rounded-lg hover:bg-gray-700/50 transition-all duration-200 hover:scale-105">
                       <div className="w-2 h-2 bg-white rounded-full mt-2 mr-3 flex-shrink-0"></div>
                       <span className="text-gray-300">{item}</span>
                     </div>
