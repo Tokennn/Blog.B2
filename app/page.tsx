@@ -56,10 +56,10 @@ export default function Home() {
       <section className="min-h-screen flex items-center justify-center px-4 pt-16">
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="hero-title text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-            Portfolio Professionnel
+            Blog V1 💡
           </h1>
           <p className="hero-subtitle text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Découvrez mon parcours, mes expériences et ma vision professionnelle à travers une interface moderne et interactive
+            Découvrez parcours, expériences et  vision professionnelle
           </p>
           <div className="hero-cta">
             <Link 
