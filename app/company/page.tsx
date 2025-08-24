@@ -146,8 +146,8 @@ export default function Company() {
             </div>
             <h3 className="text-xl font-bold text-white mb-4">Vision</h3>
             <p className="text-gray-300 leading-relaxed">
-              Être le partenaire de référence pour l'innovation technologique 
-              en France et à l'international.
+              Kalitys veut être le partenaire de référence pour l'innovation technologique 
+              en France et à l'international n°1 !
             </p>
           </div>
         </div>
@@ -183,14 +183,12 @@ export default function Company() {
               d'innovation permettent de relever les défis les plus complexe pour tous types de clients.
             </p>
             <p>
-              Mon rôle au sein de cette équipe me permet de développer et paramétrer des solutions 
+              Mon rôle au sein de cette équipe doit être de développer et paramétrer des solutions 
               innovantes tout en bénéficiant d'un cadre qui favorise l'épanouissement 
               professionnel et personnel.
             </p>
             <p>
-              L'entreprise investit continuellement dans la formation et le développement de ses équipes, 
-              créant un écosystème propice à l'apprentissage et à la croissance. Cette philosophie 
-              se reflète dans la qualité de nos livrables et la satisfaction de nos clients.
+             Grâce à ma rapidité d'apprentissage et ma passion pour le travail en équipe, mon tuteur m'a confié des missions de développement et de paramétrage de solutions qui m'ont permis de découvrir de nouvelles technologies et de nouvelles méthodes de travail.
             </p>
           </div>
         </div>

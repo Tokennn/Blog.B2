@@ -2,6 +2,6 @@
   "/page": "app/page.js",
   "/company/page": "app/company/page.js",
   "/about/page": "app/about/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/posts/page": "app/posts/page.js"
+  "/posts/page": "app/posts/page.js",
+  "/contact/page": "app/contact/page.js"
 }

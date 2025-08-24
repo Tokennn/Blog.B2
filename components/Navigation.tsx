@@ -65,8 +65,12 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="nav-item font-bold text-xl text-white hover:text-gray-300 transition-colors">
-            Portfolio
+          <Link href="/" className="nav-item flex items-center">
+            <img 
+              src="/logo-h100.png.png" 
+              alt="Logo Blog" 
+              className="h-14 w-auto hover:opacity-80 transition-opacity"
+            />
           </Link>
 
           {/* Desktop Navigation */}

@@ -888,6 +888,9 @@ video {
 .h-px {
   height: 1px;
 }
+.h-14 {
+  height: 3.5rem;
+}
 .max-h-96 {
   max-height: 24rem;
 }
@@ -996,6 +999,9 @@ video {
 }
 .w-px {
   width: 1px;
+}
+.w-auto {
+  width: auto;
 }
 .min-w-0 {
   min-width: 0px;
@@ -2193,6 +2199,10 @@ video {
 
 .hover\:opacity-100:hover {
   opacity: 1;
+}
+
+.hover\:opacity-80:hover {
+  opacity: 0.8;
 }
 
 .hover\:shadow-2xl:hover {
