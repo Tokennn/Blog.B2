@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Briefcase, User, Building, FileText } from 'lucide-react'
+import { ArrowRight, Briefcase, User, Building, FileText, Lightbulb } from 'lucide-react'
 import { gsap } from 'gsap'
 
 export default function Home() {
@@ -55,8 +55,9 @@ export default function Home() {
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center px-4 pt-16">
         <div className="text-center max-w-4xl mx-auto">
-          <h1 className="hero-title text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-            Blog V1 💡
+          <h1 className="hero-title text-5xl md:text-7xl font-bold mb-6 flex items-center justify-center gap-3">
+            <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">V1</span>
+            <Lightbulb className="text-yellow-400" size={48} />
           </h1>
           <p className="hero-subtitle text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
             Découvrez parcours, expériences et  vision professionnelle
