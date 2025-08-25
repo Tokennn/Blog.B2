@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { Calendar, Clock, Eye, X, BookOpen, Lightbulb, AlertTriangle } from 'lucide-react'
+import { X, BookOpen, Lightbulb, AlertTriangle } from 'lucide-react'
 import { gsap } from 'gsap'
 
 interface Post {
@@ -317,23 +317,7 @@ export default function Posts() {
                   {post.excerpt}
                 </p>
                 
-                {/* Meta Information */}
-                <div className="flex items-center justify-between text-sm text-gray-500">
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center">
-                      <Calendar size={14} className="mr-1" />
-                      {post.date}
-                    </div>
-                    <div className="flex items-center">
-                      <Clock size={14} className="mr-1" />
-                      {post.readTime}
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <Eye size={14} className="mr-1" />
-                    {post.views}
-                  </div>
-                </div>
+                {/* Meta Information removed: date, read time, views */}
               </div>
             </article>
           ))}
@@ -364,16 +348,6 @@ export default function Posts() {
                 <span className={`px-3 py-1 rounded-full text-xs font-semibold text-white bg-gradient-to-r ${getCategoryColor(selectedPost.category)}`}>
                   {selectedPost.category}
                 </span>
-                <div className="flex items-center text-sm text-gray-400 space-x-4">
-                  <div className="flex items-center">
-                    <Calendar size={14} className="mr-1" />
-                    {selectedPost.date}
-                  </div>
-                  <div className="flex items-center">
-                    <Clock size={14} className="mr-1" />
-                    {selectedPost.readTime}
-                  </div>
-                </div>
               </div>
               <button 
                 onClick={closePostModal}
