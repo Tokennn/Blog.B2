@@ -194,11 +194,11 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">Email</h4>
-                    <p className="text-gray-400">contact@example.com</p>
+                    <p className="text-gray-400">quentin.contreau@ynov.com</p>
                   </div>
                 </div>
 
-                <div className="contact-info flex items-start">
+                {/* <div className="contact-info flex items-start">
                   <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-gray-700 to-gray-800 flex items-center justify-center mr-4 flex-shrink-0">
                     <Phone className="text-white" size={20} />
                   </div>
@@ -206,7 +206,7 @@ export default function Contact() {
                     <h4 className="font-semibold text-white mb-1">Téléphone</h4>
                     <p className="text-gray-400">+33 1 23 45 67 89</p>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="contact-info flex items-start">
                   <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-gray-800 to-gray-900 flex items-center justify-center mr-4 flex-shrink-0">
@@ -214,7 +214,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">Localisation</h4>
-                    <p className="text-gray-400">Paris, France</p>
+                    <p className="text-gray-400">Lyon, France</p>
                   </div>
                 </div>
               </div>
@@ -226,7 +226,7 @@ export default function Contact() {
               
               <div className="space-y-4">
                 <a 
-                  href="#" 
+                  href="https://www.linkedin.com/in/quentin-c-752996294/" 
                   className="contact-info flex items-center p-3 rounded-lg hover:bg-gray-700/50 transition-colors group"
                 >
                   <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-gray-600 to-gray-700 flex items-center justify-center mr-3">
@@ -236,7 +236,7 @@ export default function Contact() {
                 </a>
 
                 <a 
-                  href="#" 
+                  href="https://github.com/Tokennn" 
                   className="contact-info flex items-center p-3 rounded-lg hover:bg-gray-700/50 transition-colors group"
                 >
                   <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-gray-800 to-gray-900 flex items-center justify-center mr-3">
@@ -252,7 +252,7 @@ export default function Contact() {
               <h3 className="text-xl font-bold text-white mb-4">Disponibilité</h3>
               <p className="text-gray-300 leading-relaxed">
                 Je réponds généralement dans les 24h. Pour les projets urgents, 
-                n'hésitez pas à le préciser dans votre message.
+                n'hésitez pas à le préciser dans votre message 👍
               </p>
             </div>
           </div>

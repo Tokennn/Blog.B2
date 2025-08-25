@@ -58,7 +58,7 @@ export default function Company() {
             L'entreprise
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Découvrez l'environnement exceptionnel dans lequel j'évolue et les valeurs qui nous animent au quotidien
+            Découvrez l'environnement dans lequel j'évolue et les valeurs qui m'animent au quotidien
           </p>
         </div>
 

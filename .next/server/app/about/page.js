@@ -228,7 +228,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/next","vendor-chunks/@swc","vendor-chunks/gsap","vendor-chunks/lenis","vendor-chunks/lucide-react"], () => (__webpack_exec__("(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fabout%2Fpage&page=%2Fabout%2Fpage&appPaths=%2Fabout%2Fpage&pagePath=private-next-app-dir%2Fabout%2Fpage.tsx&appDir=%2FUsers%2Fquentincontreau%2Fdeveloppement%2FBlog.B2%2Fapp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=%2FUsers%2Fquentincontreau%2Fdeveloppement%2FBlog.B2&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=export&preferredRegion=&middlewareConfig=e30%3D!")));
+var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/next","vendor-chunks/gsap","vendor-chunks/lenis","vendor-chunks/lucide-react","vendor-chunks/@swc"], () => (__webpack_exec__("(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fabout%2Fpage&page=%2Fabout%2Fpage&appPaths=%2Fabout%2Fpage&pagePath=private-next-app-dir%2Fabout%2Fpage.tsx&appDir=%2FUsers%2Fquentincontreau%2Fdeveloppement%2FBlog.B2%2Fapp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=%2FUsers%2Fquentincontreau%2Fdeveloppement%2FBlog.B2&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=export&preferredRegion=&middlewareConfig=e30%3D!")));
 module.exports = __webpack_exports__;
 
 })();
