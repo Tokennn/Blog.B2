@@ -80,7 +80,7 @@ export default function Home() {
           <h2 className="text-4xl font-bold text-center mb-16 text-white">
             Explorez les sections
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
             {[
               {
                 icon: User,
@@ -111,8 +111,8 @@ export default function Home() {
                 color: 'from-white to-gray-200'
               }
             ].map((feature, index) => (
-              <Link key={index} href={feature.href}>
-                <div className="feature-card bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700 hover:border-gray-600 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-2xl cursor-pointer group">
+              <Link key={index} href={feature.href} className="block h-full">
+                <div className="feature-card h-full flex flex-col bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700 hover:border-gray-600 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-2xl cursor-pointer group">
                   <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                     <feature.icon className={feature.title === 'Contact' ? 'text-black' : 'text-white'} size={28} />
                   </div>
