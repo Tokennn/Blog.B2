@@ -30,7 +30,7 @@ const posts: Post[] = [
     views: 342,
     category: "Stratégie",
     content: {
-      description: "Ce projet de transformation digitale a impliqué la refonte complète du système d'information d'une entreprise du CAC 40. L'objectif était d'améliorer l'efficacité opérationnelle tout en modernisant l'expérience utilisateur.",
+      description: "Ce projet de transformation digitale a impliqué la refonte complète du système. L'objectif était d'améliorer l'efficacité opérationnelle tout en modernisant l'expérience des utilisateurs.",
       knowledge: [
         "Architecture microservices",
         "Méthodologie Agile/Scrum",
@@ -52,37 +52,37 @@ const posts: Post[] = [
       ]
     }
   },
-  {
-    id: 2,
-    title: "Leadership en Situation de Crise",
-    excerpt: "Comment maintenir la cohésion d'équipe et la productivité durant une période difficile",
-    date: "02 Nov 2024",
-    readTime: "6 min",
-    views: 298,
-    category: "Management",
-    content: {
-      description: "Pendant la crise sanitaire, j'ai dû adapter mon style de leadership pour maintenir l'engagement et la performance de mon équipe en télétravail. Cette expérience a transformé ma vision du management moderne.",
-      knowledge: [
-        "Leadership empathique",
-        "Communication digitale",
-        "Gestion d'équipe à distance",
-        "Outils collaboratifs",
-        "Psychologie organisationnelle"
-      ],
-      difficulties: [
-        "Maintenir la culture d'entreprise à distance",
-        "Identifier les signaux de détresse des collaborateurs",
-        "Équilibrer productivité et bien-être",
-        "Gérer les différences de situation personnelle"
-      ],
-      learnings: [
-        "La flexibilité comme clé du succès",
-        "L'importance de l'écoute active",
-        "La nécessité de redéfinir les métriques de performance",
-        "La valeur des rituels d'équipe adaptés au digital"
-      ]
-    }
-  },
+  // {
+  //   id: 2,
+  //   title: "Leadership en Situation de Crise",
+  //   excerpt: "Comment maintenir la cohésion d'équipe et la productivité durant une période difficile",
+  //   date: "02 Nov 2024",
+  //   readTime: "6 min",
+  //   views: 298,
+  //   category: "Management",
+  //   content: {
+  //     description: "Pendant la crise sanitaire, j'ai dû adapter mon style de leadership pour maintenir l'engagement et la performance de mon équipe en télétravail. Cette expérience a transformé ma vision du management moderne.",
+  //     knowledge: [
+  //       "Leadership empathique",
+  //       "Communication digitale",
+  //       "Gestion d'équipe à distance",
+  //       "Outils collaboratifs",
+  //       "Psychologie organisationnelle"
+  //     ],
+  //     difficulties: [
+  //       "Maintenir la culture d'entreprise à distance",
+  //       "Identifier les signaux de détresse des collaborateurs",
+  //       "Équilibrer productivité et bien-être",
+  //       "Gérer les différences de situation personnelle"
+  //     ],
+  //     learnings: [
+  //       "La flexibilité comme clé du succès",
+  //       "L'importance de l'écoute active",
+  //       "La nécessité de redéfinir les métriques de performance",
+  //       "La valeur des rituels d'équipe adaptés au digital"
+  //     ]
+  //   }
+  // },
   {
     id: 3,
     title: "Innovation Produit : De l'Idée au Marché",

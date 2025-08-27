@@ -257,31 +257,24 @@ export default function About() {
             {[
               {
                 year: '2024',
-                title: 'Directeur Innovation',
-                company: 'TechCorp',
-                description: 'Direction de l\'équipe innovation et développement de stratégies disruptives',
+                title: 'Chef de projet',
+                company: 'Kalitys',
+                description: 'Partie de la direction de l\'équipe technique et développement',
                 side: 'left'
               },
               {
                 year: '2022',
-                title: 'Chef de Projet Senior',
-                company: 'DigitalSolutions',
-                description: 'Gestion de projets complexes et encadrement d\'équipes multidisciplinaires',
+                title: 'Chef de Projet',
+                company: 'Kalitys',
+                description: 'Partie de la direction de l\'équipe technique et développement',
                 side: 'right'
               },
               {
                 year: '2020',
-                title: 'Consultant Stratégique',
-                company: 'ConsultingPro',
-                description: 'Conseil en transformation digitale pour des entreprises du CAC 40',
+                title: 'Technicien',
+                company: 'Xefi',
+                description: 'Technicien en informatique',
                 side: 'left'
-              },
-              {
-                year: '2018',
-                title: 'Analyste Business',
-                company: 'StartupLab',
-                description: 'Analyse de marché et développement de modèles économiques innovants',
-                side: 'right'
               }
             ].map((item, index) => (
               <div key={index} className={`timeline-item flex items-center mb-12 ${item.side === 'left' ? 'justify-start' : 'justify-end'}`}>
